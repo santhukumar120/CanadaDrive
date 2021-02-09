@@ -1,0 +1,31 @@
+<apex:page standardController="case" lightningStylesheets="true" extensions="CaseSearch" >
+    <apex:sectionHeader />
+    <apex:form >
+        <apex:pageBlock title="Case Search" tabStyle="Case" >
+            <apex:pageBlocksection title="Search for Cases" collapsible="False" >
+                <apex:pageBlocksectionitem >
+                    <apex:outputLabel value="Enter Case number" style="color:black" />     
+                    <apex:inputText id="searchBox" value="{!searchValue}" /> 
+                </apex:pageBlocksectionitem>                               
+            </apex:pageBlocksection>
+            <apex:pageBlockbuttons location="bottom">
+                <apex:commandButton id="submit" value="Search" action="{!searchCases}"/>
+            </apex:pageBlockbuttons>
+        </apex:pageBlock>
+        <apex:pageBlock title="Search Results" rendered="{!canRender}" tabStyle="case">           
+            <apex:pageBlockSection Title="View & Edit Case " collapsible="False" >
+                <apex:outputField value="{!searchResults.casenumber}" label="Case Number"/>
+                <apex:outputField value="{!searchResults.status}" label="Case status"  >                    
+                    <apex:inlineEditSupport showOnEdit="updateRecord" event="ondblclick" />                    
+                </apex:outputField>
+                <apex:outputField value="{!searchResults.Owner.name}" label="Current Owner"/>  
+                <apex:outputField value="{!searchResults.Previous_Owner__c}" label="Previous Owner"/>  
+                <apex:outputField value="{!searchResults.Origin}" label="origin"/>          
+                <apex:outputField value="{!searchResults.Type}" label="Type"/>                  
+            </apex:pageBlockSection>
+            <apex:pageBlockbuttons location="bottom">
+                <apex:commandButton id="update" action="{!updateCaseData}" value="Update Record" disabled="false"> </apex:commandButton>
+            </apex:pageBlockbuttons>                
+        </apex:pageBlock>
+    </apex:form>    
+</apex:page>

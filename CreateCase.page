@@ -1,0 +1,33 @@
+<apex:page standardController="case" lightningStylesheets="ture" extensions="CaseSearch" >
+    <apex:form >
+        <apex:pageblock title="Create a new Case" tabstyle="case">
+            <apex:pageBlockSection collapsible="False" title="Create a new Service Case" >
+                <apex:inputfield value="{! objCs.Origin}"/>
+                <apex:inputfield value="{! objCs.Reason}"/>
+                <apex:inputfield value="{! objCs.Status}"/>
+                <apex:inputfield value="{! objCs.Type}"/>
+                <apex:inputfield value="{! objCs.AccountId}"/>       
+            </apex:pageBlockSection>
+            
+            <apex:pageBlocksection collapsible="true" title="Case description">
+                <apex:inputfield value="{! objCs.ContactId}"/>
+                <apex:inputfield value="{! objCs.Subject}"/>
+                <apex:inputfield value="{! objCs.description}"/>               
+            </apex:pageBlocksection>
+            
+             
+           <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!insertCaseData}" />
+           </apex:pageBlockButtons>
+            
+        </apex:pageblock>
+        
+        <apex:pageBlock title="Checkout the Case number" tabStyle="case" rendered="{!objCs.Status !=null}" >
+                <apex:pageBlocksection collapsible="true" title="New Case number">
+                <apex:outputText value="{!cn}" />                             
+                </apex:pageBlocksection>
+        </apex:pageBlock>
+        
+        
+    </apex:form>
+</apex:page>
